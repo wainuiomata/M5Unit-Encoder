@@ -33,7 +33,7 @@ signed short int last_value = 0;
 
 void loop() {
     signed short int encoder_value = sensor.getEncoderValue();
-    bool btn_stauts                = sensor.getButtonStatus();
+    bool btn_status                = sensor.getButtonStatus();
     Serial.println(encoder_value);
     if (last_value != encoder_value) {
         if (last_value > encoder_value) {
@@ -45,11 +45,11 @@ void loop() {
     } else {
         sensor.setLEDColor(0, 0x001100);
     }
-    if (!btn_stauts) {
+    if (!btn_status) {
         sensor.setLEDColor(0, 0xC800FF);
     }
     canvas.fillSprite(BLACK);
-    canvas.drawString("BTN:" + String(btn_stauts), 10, 10);
+    canvas.drawString("BTN:" + String(btn_status), 10, 10);
     canvas.drawString("ENCODER:" + String(encoder_value), 10, 40);
     canvas.pushSprite(0, 0);
     delay(20);
